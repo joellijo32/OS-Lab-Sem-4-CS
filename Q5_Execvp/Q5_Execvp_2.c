@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 int main(){
     pid_t pid;
@@ -10,6 +11,7 @@ int main(){
         char *args[] = {"./myadder", "10", "20", NULL}; 
         execvp(args[0], args);
     } else{
+	wait(NULL);
         printf("\nThis is the second program.\n"); 
     }
     

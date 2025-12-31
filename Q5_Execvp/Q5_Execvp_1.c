@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
     b = atoi(argv[2]); 
 
     sum = a+b;
-    printf("Sum of %d and %d = %d", a, b, sum); 
+    printf("\nSum of %d and %d = %d\n", a, b, sum); 
 
     return 0;
 }
