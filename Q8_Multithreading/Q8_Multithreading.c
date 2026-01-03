@@ -78,7 +78,7 @@ int main(int argc, char *argv[]){
 	}
 	printf("\nEntered: \n");
 	for(int i = 0; i < argc-1; i++){
-		printf("%d\t", ar[i]);
+		printf("%d ", ar[i]);
 	} printf("\n");
 
 	Thread thread;
