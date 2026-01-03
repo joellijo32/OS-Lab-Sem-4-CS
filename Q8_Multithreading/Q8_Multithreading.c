@@ -79,7 +79,26 @@ int main(int argc, char *argv[]){
 	printf("\nEntered: \n");
 	for(int i = 0; i < argc-1; i++){
 		printf("%d\t", ar[i]);
-	}
-	printf("\n");
+	} printf("\n");
+
+	Thread thread;
+	thread.array = ar; thread.size = argc-1;
+	pthread_t tid_mean, tid_median, tid_sd;
+
+
+	pthread_create(&tid_mean, NULL, calculate_mean, (void *)&thread); 
+	pthread_join(tid_mean, NULL);
+
+
+	pthread_create(&tid_median, NULL, calculate_median, (void *)&thread);
+	pthread_join(tid_median, NULL);
+
+
+	pthread_create(&tid_sd, NULL, calculate_std_dev, (void *)&thread);
+	pthread_join(tid_sd, NULL);
+
+
+	printf("\nMean = %lf\nMedian = %lf\nStandard Deviation = %lf\n", mean, median, std_dev);
+
 	return 0;
 }
