@@ -40,7 +40,7 @@ void *calculate_median(void *args){
 		ar[i] = small;
 	}
 	if((median_args->size)%2 == 0){
-		double mid = median_args->size / 2;
+		int mid = median_args->size / 2;
 		median = (ar[mid] + ar[mid-1]) / 2.0 ;
 	} else{
 		median = ar[(median_args->size)/2] ;
@@ -63,4 +63,23 @@ void *calculate_std_dev(void *args){
 	}
 	std_dev = sqrt(numerator / sd_args->size);
 	return sd_args;
+}
+
+
+
+int main(int argc, char *argv[]){
+        if(argc <= 1){
+		printf("\nArgument Error\n");
+		return 1;
+	}
+	int ar[argc-1], pos = 1;
+	for(int i = 0; i < argc-1; i++){
+		ar[i] = atoi(argv[pos++]);
+	}
+	printf("\nEntered: \n");
+	for(int i = 0; i < argc-1; i++){
+		printf("%d\t", ar[i]);
+	}
+	printf("\n");
+	return 0;
 }
