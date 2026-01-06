@@ -30,6 +30,21 @@ int main(){
 		p[i] = small;
 	}
 
+	while(completed < n){
+		for(int i = 0;i < n;i++){
+			if(p[i].arrival <= current_time && p[i].remaining > 0){
+				if(p[i].remaining > 3){
+					p[i].remaining = p[i].remaining - 3;
+					current_time += 3;
+				}else{
+					current_time += p[i].remaining;
+					p[i].remaining = 0;
+					completed++;
+				}
+			}
+		}
+	}
+
 
         return 0;
 }
