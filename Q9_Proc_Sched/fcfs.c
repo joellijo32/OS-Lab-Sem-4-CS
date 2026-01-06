@@ -17,7 +17,7 @@ int main(){
 		printf("\tArrival: "); scanf("%d", &(p[i].arrival) );
 		printf("\tBurst: "); scanf("%d", &(p[i].burst) );
 		printf("\tPriority: "); scanf("%d", &(p[i].priority) );
-		printf("Proccess %d Registered\n.", i+1);
+		printf("Proccess %d Registered.\n", i+1);
 	}
 
 	Proc small; int pos;
@@ -32,10 +32,23 @@ int main(){
 		p[pos] = p[i];
 		p[i] = small;
 	}
-
-	printf("\nProccesses entered in sorted order: \n");
+	int current_time = 0, wait_sum = 0, tat_sum = 0;
+	printf("\n\nFCFS Scheduling: \n");
 	for(int i = 0; i < n;i++){
-		printf("Proc %d: %d\n", i+1, p[i].arrival);
+		if(current_time < p[i].arrival) current_time = p[i].arrival;
+		//process completed
+		printf("\nProccess ID %d: Completed", p[i].id) ;
+		p[i].completion = current_time + p[i].burst;
+
+		p[i].turnaround = p[i].completion - p[i].arrival;
+		tat_sum += p[i].turnaround;
+
+		p[i].waiting = p[i].turnaround - p[i].burst;
+		wait_sum += p[i].waiting;
 	}
+	printf("\n\nFCFS Scheduling Complete.\n");
+
+
+
 	return 0;
 }
