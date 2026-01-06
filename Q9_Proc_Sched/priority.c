@@ -27,10 +27,10 @@ int main(){
 	}
 	int completed = 0;
 	while(completed < n){
-		int max_prio = -1, index = -1;
+		int max_prio = p[0].priority, index = -1;
 		for(int i = 0;i < n;i++){
 			if(p[i].arrival <= current_time && p[i].is_complete == 0){
-				if(p[i].priority > max_prio){
+				if(index == -1 || p[i].priority > max_prio){
 					max_prio = p[i].priority, index = i;
 				}
 			}
