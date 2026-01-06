@@ -48,8 +48,14 @@ int main(){
 
 		current_time = p[i].completion;
 	}
-	printf("\n\nFCFS Scheduling Complete.\n");
+	printf("\nFCFS Scheduling Complete.\n");
+	printf("\nAverage Waiting Time: %lf", (double)wait_sum/n);
+	printf("\nAverage Turn Around Time: %lf", (double)tat_sum/n);
 
+	printf("\n\nGantt chart for FCFS: \n");
+	for(int i = 0; i < n; i++){
+		printf(" | %d", p[i].id);
+	}printf(" |\n");
 
 
 	return 0;
