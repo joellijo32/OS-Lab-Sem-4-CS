@@ -20,7 +20,7 @@ int main(){
 	int gantt[n], pos = 0;
 	int current_time = 0, wait_sum = 0, tat_sum = 0;
 	printf("\n\nNon-Preemptive Priority Scheduling: \n");
-	
+
 
 	for(int i = 0;i < n;i++){
 		p[i].is_complete = 0;
@@ -48,6 +48,7 @@ int main(){
 
 		gantt[pos++] = p[index].id;
 		p[index].is_complete = 1; completed++;
+		current_time = p[index].completion;
 	}
         printf("\nNon-Preemptive Priority Scheduling Complete.\n");
         printf("\nAverage Waiting Time: %lf", (double)wait_sum/n);
@@ -55,7 +56,7 @@ int main(){
 
         printf("\n\nGantt chart for Non-Preemptive Priority: \n");
         for(int i = 0; i < n; i++){
-            	printf(" | %d", p[i].id);
+            	printf(" | %d", gantt[i]);
         }printf(" |\n");
 
         return 0;
