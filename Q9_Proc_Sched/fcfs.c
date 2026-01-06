@@ -45,6 +45,8 @@ int main(){
 
 		p[i].waiting = p[i].turnaround - p[i].burst;
 		wait_sum += p[i].waiting;
+
+		current_time = p[i].completion;
 	}
 	printf("\n\nFCFS Scheduling Complete.\n");
 
