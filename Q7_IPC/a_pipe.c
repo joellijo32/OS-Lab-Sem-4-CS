@@ -40,7 +40,7 @@ int main(){
 		printf("\nParent Process Calculated b2: %d\n", b*b);
 
 		int recieved ;
-		recieved = read(fd[0], &recieved, sizeof(int)); 
+		read(fd[0], &recieved, sizeof(int)); 
 		printf("\nParent Recieved 4ac: %d\n", recieved);
 		close(fd[0]);
 
