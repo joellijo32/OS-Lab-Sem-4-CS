@@ -13,7 +13,7 @@ int main(){
 		printf("\nProccess %d:\n", i+1);
 		printf("\tID: "); scanf("%d", &(p[i].id));
 		printf("\tArrival: "); scanf("%d", &(p[i].arrival) );
-		printf("\tBurst: "); scanf("%d", &(p[i].burst) );/
+		printf("\tBurst: "); scanf("%d", &(p[i].burst) );
 		printf("Proccess %d Registered.\n", i+1);
 	}
 
