@@ -28,14 +28,14 @@ int main()
 	int gantt[1000];
 
 	int prev = -1,pos=0;
-
+	printf("\nSRTF Process Scheduling...\n");
 	while(completed<n)
 	{
 		int minRT=9999, index = -1;
 
 		for(int i=0;i<n;i++)
 		{
-			//finding proc with min remaining time arrived until the current_time
+			
 			if(p[i].arrival<=current_time && p[i].remaining >0)
 			{
 				if(p[i].remaining<minRT)
@@ -52,7 +52,7 @@ int main()
 			}
 		}
 
-		if(index==-1)  //CPU idle
+		if(index==-1)  
 		{
 			current_time++;
 			continue;
@@ -64,7 +64,7 @@ int main()
 			prev=index;
 		}
 
-		p[index].remaining--;  //process executed for 1 unit of time
+		p[index].remaining--;  
 		current_time++;
 
 		if(p[index].remaining==0)
@@ -78,10 +78,10 @@ int main()
 
 	printf("\n%-5s %-10s %-10s %-10s %-10s %-10s\n", 
        "ID", "Arrival", "Burst", "Exit", "TAT", "Wait");
-    printf("----------------------------------------------------- \n");
+    
     for (int i = 0; i < n; i++)
     {
-        printf("P%-5d %-10d %-10d %-10d %-10d %-10d\n",p[i].id, p[i].arrival, p[i].burst,p[i].completion, p[i].turnaround, p[i].waiting);
+        printf("%-5d %-10d %-10d %-10d %-10d %-10d\n",p[i].id, p[i].arrival, p[i].burst,p[i].completion, p[i].turnaround, p[i].waiting);
     }
 
     printf("\n\nGantt Chart: \n");
