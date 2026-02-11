@@ -37,3 +37,30 @@ void *writer(void *args){
 	return d;
 }
 
+void *reader(void *args){
+	details *d = (details *)args;
+
+	//entry section
+	sem_wait(&d->r_mutex);
+	sem_post(&d->r_mutex);
+
+	sem_wait(&d->mutex);
+	d->rc++;
+	if(d->rc == 1){
+		sem_wait(&d->rw_mutex);
+	}
+	sem_post(&d->mutex);
+
+	//critical section
+	printf("\nReader %d is writing...\n", d->rc);
+	sleep(1);
+
+	//exit section
+	sem_wait(&d->mutex);
+	d->rc--;
+	if(d->rc == 0){
+		sem_post(&d->rw_mutex);
+	}
+	sem_post(&d->mutex);
+	return d;
+}
