@@ -45,6 +45,8 @@ int main() {
 		message.msg_text = 2;
 		msgsnd(msgid, &message, sizeof(message), 0);
 	}else {
+		printf("\nEnter the String: ");
+		scanf("%s", &message.msg_text);
 	}
 
 
