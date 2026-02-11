@@ -32,7 +32,7 @@ int main() {
 	pid_t pid = fork();
 	if(pid == 0){
 		msgrcv(msgid, &message, sizeof(message), 1, 0);
-		printf("\nChild recieved string: %s", message.msg_text);
+		printf("\nChild recieved string: %s\n", message.msg_text);
 
 		int len = strlen(message.msg_text);
 		for(int i = 0;i< (len/2); i++){
@@ -40,6 +40,10 @@ int main() {
 			message.msg_text[i] = message.msg_text[len-i-1];
 			message.msg_text[len-1-i] = temp;
 		}
+
+		printf("\nChild sending reversed string: %s\n", message.msg_text); 
+		message.msg_text = 2;
+		msgsnd(msgid, &message, sizeof(message), 0);
 	}else {
 	}
 
