@@ -2,6 +2,7 @@
 #include <semaphore.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 typedef struct Details{
 	int rc, wc;
@@ -52,7 +53,7 @@ void *reader(void *args){
 	sem_post(&d->mutex);
 
 	//critical section
-	printf("\nReader %d is writing...\n", d->rc);
+	printf("\nReader %d is reading...\n", d->rc);
 	sleep(1);
 
 	//exit section
@@ -63,4 +64,30 @@ void *reader(void *args){
 	}
 	sem_post(&d->mutex);
 	return d;
+}
+
+
+int main(){
+	details *d = malloc(sizeof(details));
+	d->rc = 0, d->wc = 0;
+	sem_init(&d->mutex, 0, 1);
+	sem_init(&d->r_mutex, 0, 1);
+	sem_init(&d->w_mutex, 0, 1);
+	sem_init(&d->rw_mutex, 0, 1);
+
+	pthread_t r[5], w[5];
+	for(int i = 0; i < 5;i++){
+		pthread_create(&r[i], NULL, &reader, d);
+		pthread_create(&w[i], NULL, &writer, d);
+	}
+	for(int i = 0; i < 5;i++){
+		pthread_join(r[i], NULL);
+		pthread_join(w[i], NULL);
+	}
+
+	sem_destroy(&d->mutex);
+	sem_destroy(&d->r_mutex);
+	sem_destroy(&d->w_mutex);
+	sem_destroy(&d->rw_mutex);
+	return 0;
 }
