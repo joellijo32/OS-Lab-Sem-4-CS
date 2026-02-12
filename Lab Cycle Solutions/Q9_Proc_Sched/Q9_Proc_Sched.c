@@ -166,15 +166,29 @@ double round_robin(Proc p[], int n){
 
 double srtf(Proc p[], int n){
 	int completed = 0,current_time = 0;
-
+	
 	int gantt[1000];
+
+	Proc small; int pos;
+	for(int i = 0; i < n-1; i++){
+		small = p[i], pos = i;
+		for(int j = i+1; j < n;j++){
+			if(p[j].arrival < small.arrival){
+				small = p[j]; 
+				pos = j;
+			}
+		}
+		p[pos] = p[i];
+		p[i] = small;
+	}
+	
 	
 	// Initialize remaining time
 	for(int i = 0; i < n;i++){
 		p[i].remaining = p[i].burst;
 	}
 
-	int prev = -1,pos=0;
+	int prev = -1;pos=0;
 	printf("\n\nSRTF Process Scheduling: \n");
 	while(completed<n)
 	{
@@ -226,12 +240,17 @@ double srtf(Proc p[], int n){
 	printf("\n%-5s %-10s %-10s %-10s %-10s %-10s\n", 
        "Pid", "Arrival", "Burst", "Completion", "Waiting", "Turn Around");
     
-    int wait_sum = 0;
+    int wait_sum = 0, tat_sum = 0;
     for (int i = 0; i < n; i++)
     {
         printf("%-5d %-10d %-10d %-10d %-10d %-10d\n",p[i].id, p[i].arrival, p[i].burst,p[i].completion,  p[i].waiting,p[i].turnaround);
         wait_sum += p[i].waiting;
+	tat_sum += p[i].turnaround;
     }
+    printf("\nSRTF Scheduling Complete.\n");
+	double avg_wait = (double)wait_sum/n;
+	printf("\nAverage Waiting Time: %lf", avg_wait);
+	printf("\nAverage Turn Around Time: %lf", (double)tat_sum/n);
 
     printf("\n\nGantt Chart: \n");
 	for(int i = 0;i < pos;i++)
@@ -239,6 +258,7 @@ double srtf(Proc p[], int n){
 		printf("| %d ", gantt[i]);
 	}
 	printf("|\n");
+
 	
 	return (double)wait_sum/n;
 }
@@ -259,18 +279,20 @@ int main(){
 		printf("Proccess %d Registered.\n", i+1);
 	}
 	
-	// Create copies for each algorithm since they modify the array
+
 	memcpy(p_copy1, p, n * sizeof(Proc));
 	memcpy(p_copy2, p, n * sizeof(Proc));
 	memcpy(p_copy3, p, n * sizeof(Proc));
 	
-	// Run all 4 scheduling algorithms and capture average waiting times
+	
+
+
 	double fcfs_avg = fcfs(p, n);
 	double priority_avg = priority_scheduling(p_copy1, n);
 	double rr_avg = round_robin(p_copy2, n);
 	double srtf_avg = srtf(p_copy3, n);
 	
-	// Find minimum average waiting time
+	
 	double min_avg = fcfs_avg;
 	char min_algo[50] = "FCFS";
 	
