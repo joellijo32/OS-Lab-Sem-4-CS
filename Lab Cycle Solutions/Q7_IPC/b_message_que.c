@@ -45,16 +45,16 @@ int main() {
 		message.msg_type = 2;
 		msgsnd(msgid, &message, sizeof(message), 0);
 	}else {
-		printf("\nEnter the String: ");
+		printf("\nEnter the String (Unifrom Caps): ");
 		scanf("%s", message.msg_text);
 		char temp[100];
 		strcpy(temp, message.msg_text);
 
 		message.msg_type = 1;
 		msgsnd(msgid, &message, sizeof(message), 0);
-		printf("\nParent Send %s\n", message.msg_text);
+		printf("\nParent Send: %s\n", message.msg_text);
 		msgrcv(msgid, &message, sizeof(message), 2, 0);
-		printf("\nParent Received %s\n", message.msg_text);
+		printf("\nParent Received: %s\n", message.msg_text);
 		if(strcmp(message.msg_text, temp) == 0){
 			printf("\nThe String: %s is Palindrome\n", message.msg_text);
 		} else printf("\nThe String: %s is NOT Palindrome\n", message.msg_text);
