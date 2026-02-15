@@ -16,3 +16,7 @@ typedef struct {
 	char comb_str[300];
 	int status;
 } SharedData;
+
+int main(){
+	key_t key = ftok("shmfile", 65);
+}
