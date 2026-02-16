@@ -1,4 +1,4 @@
-#  REaders Writers Algorithm
+#  Readers Writers Algorithm
 
 **Step 1:** Start the program.
 
