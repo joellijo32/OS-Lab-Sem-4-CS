@@ -28,12 +28,12 @@ void* reader(void *arg)
 		sem_post(&readTry);
 
 		//Critical section 
-		printf("Reader %d is reading %d \n",id,sharedData);
+		printf("\nReader %d is reading %d \n",id,sharedData);
 		sleep(1);
 
 		sem_wait(&rmutex);
 		readCount--;
-
+		printf("\nReader %d is exiting...\n", id);
 		if(readCount==0)
 			sem_post(&resource);
 
@@ -53,9 +53,9 @@ void* writer(void* arg)
 		sem_wait(&resource);
 
 		sharedData++;
-		printf("Writer %d is writing %d \n",id,sharedData);
+		printf("\nWriter %d is writing %d \n",id,sharedData);
 		sleep(2);
-
+		printf("\nWriter %d is exiting...\n", id);
 		sem_post(&resource);
 		sem_post(&readTry);
 
