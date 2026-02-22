@@ -1,4 +1,4 @@
-#AIM
+# AIM
 Write a program to add two integers (received via the command line) and compile it to an
 executable named “myadder”. Now write another program that creates a new process
 using a fork system call. Make the child process add two integers by replacing its image
