@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{graphicx}
+
+\usepackage{setspace}
+\usepackage{float}
+
+\usepackage{listings}
+
+% --- LISTINGS CONFIGURATION ---
+\lstset{
+    basicstyle=\ttfamily\small, % Typewriter font, slightly scaled down
+    breaklines=true,            % Enable automatic line breaking
+    breakatwhitespace=true,     % Only break lines at spaces, not mid-word
+    keepspaces=true,            % Preserve indentation spaces
+    showstringspaces=false,     % Don't print weird underscores in strings
+    columns=fullflexible        % Prevents weird letter spacing
+}
+% ------------------------------
+
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\lhead{Date:}
+\rhead{Page No: \thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\titleformat{\section}
+  {\normalfont\bfseries\uppercase}
+  {}{0em}{}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries}
+  {\thesubsection}{1em}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+{{body}}
+
+\end{document}
