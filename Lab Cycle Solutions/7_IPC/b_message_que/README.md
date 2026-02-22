@@ -1,4 +1,4 @@
-# ALGORITHM
+# ALGORITHM 2
 
 **Step 1:** Start
 
