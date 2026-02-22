@@ -13,5 +13,6 @@ The programs demonstrate fundamental Operating Systems concepts.
 ## Contributors ❤️:
 
 1. [Joel Lijo Mathew](https://github.com/joellijo32)
-2. [Naveen S](https://github.com/NaveenS-cool)
-3. [Sreehari Vinayan](https://github.com/SreehariVinayan)     
+2. [Navaneeth V Sankar](https://github.com/neverneeth)
+3. [Naveen S](https://github.com/NaveenS-cool)
+4. [Sreehari Vinayan](https://github.com/SreehariVinayan)     
