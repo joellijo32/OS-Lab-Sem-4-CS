@@ -1,4 +1,7 @@
-# Algorithm
+# AIM
+Obtain a process mix and determine if the system is deadlocked.    
+
+# ALGORITHM
 
 **Step 1:** Start 
 

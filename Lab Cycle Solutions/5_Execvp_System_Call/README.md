@@ -1,4 +1,10 @@
-# Algorithm 1
+#AIM
+Write a program to add two integers (received via the command line) and compile it to an
+executable named “myadder”. Now write another program that creates a new process
+using a fork system call. Make the child process add two integers by replacing its image
+with the “myadder” image using execvp system call.
+
+# ALGORITHM 1
 
 **Step 1:** Start
 
@@ -17,7 +23,7 @@
 **Step 8:** Stop.
 
 
-# Algorithm 2
+# ALGORITHM 2
 
 **Step 1:** Start
 

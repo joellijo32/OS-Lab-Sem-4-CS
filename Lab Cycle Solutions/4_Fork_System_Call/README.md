@@ -1,4 +1,8 @@
-# Algorithm
+# AIM
+Create a new process using a fork system call. Print the parent and child process IDs. Use
+the pstree command to find the process tree for the child process starting from the init process.
+
+# ALGORITHM
 
 **Step 1:** Start
 

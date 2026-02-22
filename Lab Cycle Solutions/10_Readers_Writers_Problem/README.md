@@ -1,4 +1,8 @@
-#  Algorithm
+# AIM
+Use semaphores to solve the readers-writers problem with writers being given priority
+over readers.    
+
+#  ALGORITHM
 
 **Step 1:** Start
 

@@ -1,4 +1,22 @@
-# Algorithm 1
+# AIM
+(a) Using Pipe – Evaluate the expression $\sqrt{b^2 - 4ac}$. The first process
+evaluates $b^2$. The second process evaluates 4ac and sends it to the first
+process which evaluates the final expression and displays it.      
+
+(b) Using Message Queue - The first process sends a string to the second
+process. The second process reverses the received string and sends it back
+to the first process. The first process compares the original string and the
+reversed string received from the second one and then prints whether the
+string is a palindrome or not.      
+
+(c) Using Shared Memory - The first process sends three strings to the second
+process. The second process concatenates them to a single string (with
+whitespace being inserted between the two individual strings) and sends it
+back to the first process. The first process prints the concatenated string in
+the flipped case, that is if the concatenated string is “Hello S4 Students”,
+the final output should be “hELLO s4 sTUDENTS”      
+
+# ALGORITHM 1
 
 **Step 1:** Start 
 

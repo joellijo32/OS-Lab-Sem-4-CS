@@ -1,37 +1,49 @@
-# Algorithm 1
+# AIM
+Input a list of processes, their CPU burst times (integral values), arrival times, and
+priorities. Then simulate FCFS, SRTF, non-preemptive priority (a larger priority number
+implies a higher priority), and RR (quantum = 3 units) scheduling algorithms on the process mix, determining which algorithm results in the minimum average waiting time
+(over all processes).     
 
-**Step 1:** Start the program.
+# ALGORITHM
 
-**Step 2:** Check if the total number of command-line arguments provided is exactly three.
+**Step 1:** Start.
 
-**Step 3:** If the argument count is not three, print an error message and terminate the program.
+**Step 2:** Declare the `Proc` structure containing process details (ID, Arrival, Burst, Priority, Remaining Time) and input the total number of processes ($n$).
 
-**Step 4:** Convert the second command-line argument from a text string into an integer value and store it.
+**Step 3:** Iterate $n$ times to read the Process ID, Arrival Time, Burst Time, and Priority. Initialize `remaining` time equal to `burst` for all processes.
 
-**Step 5:** Convert the third command-line argument from a text string into an integer value and store it.
+**Step 4:** Perform **FCFS Scheduling**:
+* **Logic:** Create a copy of the process list and **sort** it by Arrival Time.
+* **Execution:** Iterate through the sorted list. If the CPU is idle (`current_time` < `arrival`), advance time. Otherwise, add `burst` to `current_time` to find `completion`.
+* **Calculation:** Compute `turnaround` (`completion` - `arrival`) and `waiting` (`turnaround` - `burst`) for each process.
+* **Output:** Print the FCFS Gantt Chart and average Waiting/Turnaround times.
 
-**Step 6:** Calculate the sum of the two stored integer values.
+**Step 5:** Perform **Non-Preemptive Priority Scheduling**:
+* **Initialization:** Reset `current_time` and `completed` counters. Mark all processes as incomplete.
+* **Loop:** Repeat until all processes are finished:
+    * **Search:** Iterate to find the process that has **Arrived** and is **Incomplete** with the **Highest Priority**.
+    * **Execute:** Update `current_time` by adding the selected process's `burst`. Calculate `turnaround` and `waiting` times. Mark the process as complete.
+* **Output:** Print the Priority Gantt Chart and average Waiting/Turnaround times.
 
-**Step 7:** Print the two individual integer values along with their calculated sum to the console.
+**Step 6:** Perform **Round Robin Scheduling** (Time Quantum = 3):
+* **Initialization:** Reset `current_time` and `remaining` time (to `burst`). Sort the list by Arrival Time.
+* **Loop:** Cycle through the process list repeatedly until all are finished:
+    * **Quantum Check:** If a process has arrived and is incomplete:
+        * If `remaining` > 3: Execute for 3 units, subtract 3 from `remaining`, and advance `current_time`.
+        * If `remaining` $\le$ 3: Execute for `remaining` time, set `remaining` to 0, update `current_time`, and calculate `turnaround` and `waiting` times.
+* **Output:** Print the Round Robin Gantt Chart and average Waiting/Turnaround times.
 
-**Step 8:** Stop.
+**Step 7:** Perform **SRTF (Shortest Remaining Time First) Scheduling**:
+* **Initialization:** Reset `current_time` and set `remaining` time equal to `burst` for all processes.
+* **Loop:** Increment time unit by unit until all processes are completed:
+    * **Selection:** Check all processes that have **Arrived** (`arrival` $\le$ `current_time`) and are incomplete. Select the process with the **Minimum Remaining Time**.
+    * **Execute:** Execute the selected process for 1 unit of time: decrement its `remaining` time and increment `current_time`.
+    * **Completion:** If `remaining` becomes 0, mark the process as completed. Calculate `turnaround` (`completion` - `arrival`) and `waiting` (`turnaround` - `burst`).
+* **Output:** Print the SRTF Gantt Chart and average Waiting/Turnaround times.
 
----
+**Step 8:** Compare Algorithms:
+* **Comparison:** Compare the **Average Waiting Time** calculated from FCFS, Priority, Round Robin, and SRTF.
+* **Selection:** Identify the algorithm with the minimum average waiting time.
+* **Output:** Print the name of the **Best Algorithm** and its average waiting time.
 
-# Algorithm 2
-
-**Step 1:** Start the program.
-
-**Step 2:** Create a new child process by duplicating the current parent process.
-
-**Step 3:** Check if the current execution stream belongs to the newly created child process.
-
-**Step 4:** If it is the child process, prepare a list of arguments containing the name of the external adder program, two numerical values as text strings, and a termination marker.
-
-**Step 5:** Have the child process execute the external adder program using the prepared list of arguments, replacing its current memory image entirely.
-
-**Step 6:** If the current execution stream belongs to the parent process, pause and wait for the child process to completely finish its execution.
-
-**Step 7:** Once the child process has finished, have the parent process print a message stating that this is the second program.
-
-**Step 8:** Stop.
+**Step 9:** Stop.

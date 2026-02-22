@@ -1,4 +1,8 @@
-# Algorithm
+# AIM
+Implement the deadlock-free semaphore-based solution for the dining philosopher’s
+problem.    
+
+# ALGORITHM
 
 **Step 1:** Start
 

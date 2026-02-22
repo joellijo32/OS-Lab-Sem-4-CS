@@ -1,4 +1,8 @@
-# Algorithm
+# AIM
+Obtain a (deadlock-free) process mix and simulate the banker’s algorithm to determine a
+safe execution sequence.    
+
+# ALGORITHM
 
 **Step 1:** Start 
 

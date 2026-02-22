@@ -1,4 +1,10 @@
-# Algorithm
+# AIM
+Create a new process using a fork system call. The child process should print the string
+“PCCSL407” and the parent process should print the string “Operating Systems Lab”.
+Use a wait system call to ensure that the output displayed is “PCCSL407 Operating
+Systems Lab” 
+
+# ALGORITHM
 
 **Step 1:** Start
 
