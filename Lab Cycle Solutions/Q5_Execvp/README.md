@@ -16,7 +16,6 @@
 
 **Step 8:** Stop.
 
----
 
 # Program 2: Process Execution Algorithm
 
