@@ -1,43 +1,44 @@
-# ALGORITHM 2
+# ALGORITHM
 
 **Step 1:** Start
 
-**Step 2:** Define a structure `msg_buffer` containing a `long` for message type and a `char` array for the message text.
+**Step 2:** Define a helper function to reverse a given text string by swapping characters from the beginning and the end until the middle is reached.
 
-**Step 3:** Declare variables for the message key, queue ID, an instance of the message structure, and the process ID.
+**Step 3:** In the main execution, initialize the configuration attributes for the message queues, specifying the maximum number of messages and the maximum size for each message. 
+**Step 4:** Create and open two separate message queues with read and write permissions to allow two-way communication.
 
-**Step 4:** Generate a unique system key using the `ftok` function with the file "progfile" and identifier 65.
+**Step 5:** Create a new child process by duplicating the current parent process.
 
-**Step 5:** Create a message queue using `msgget` with the generated key, 0666 permissions, and the IPC_CREAT flag.
+**Step 6:** Check if the current execution stream belongs to the newly created child process.
 
-**Step 6:** If the message queue ID is -1, print an error message indicating failure and terminate the program.
+**Step 7:** If it is the child process, wait to receive a text message from the first message queue and store it.
 
-**Step 7:** Create a child process using the `fork` system call.
+**Step 8:** Call the helper function to reverse the text string received from the parent.
 
-**Step 8:** Check if the process ID equals 0 to execute the child process logic.
+**Step 9:** Send the newly reversed text string into the second message queue.
 
-**Step 9:** Inside the child process, use `msgrcv` to wait for and read a message of type 1 from the queue.
+**Step 10:** Close the connections to both message queues in the child process and finish the child's specific tasks.
 
-**Step 10:** Print the received string to the console.
+**Step 11:** If the current execution stream belongs to the parent process, prompt the user to input a text string from the console.
 
-**Step 11:** Calculate the length of the string and reverse it by swapping characters from the start and end indices.
+**Step 12:** Read the user's input string and carefully remove any trailing newline characters from the end.
 
-**Step 12:** Print the reversed string, set the message type to 2, and use `msgsnd` to send the reversed string back to the queue.
+**Step 13:** Send the original input string into the first message queue so the child process can read it.
 
-**Step 13:** If the process ID is not 0, execute the parent process logic.
+**Step 14:** Pause and wait to receive the processed response from the second message queue, storing it in a separate buffer.
 
-**Step 14:** Prompt the user to enter a string and store it in the message buffer.
+**Step 15:** Print the received reversed string to the console for the user to see.
 
-**Step 15:** Copy the input string into a temporary variable to preserve the original value.
+**Step 16:** Compare the original input string directly with the received reversed string.
 
-**Step 16:** Set the message type to 1 and use `msgsnd` to send the input string to the queue.
+**Step 17:** If the two strings are exactly identical, print a message stating that the string is a palindrome.
 
-**Step 17:** Print the sent string, then use `msgrcv` to wait for and read the message of type 2 (the reversed string) from the queue.
+**Step 18:** If the two strings are not identical, print a message stating that the string is not a palindrome.
 
-**Step 18:** Compare the received string with the temporary original string.
+**Step 19:** Close the connections to both message queues in the parent process.
 
-**Step 19:** If the strings are identical, print that the string is a palindrome; otherwise, print that it is not.
+**Step 20:** Wait for the child process to completely finish its execution to safely clean up the process.
 
-**Step 20:** Remove the message queue from the system using `msgctl` with the IPC_RMID flag.
+**Step 21:** Delete and remove both message queues from the system entirely to free up operating system resources.
 
-**Step 21:** Stop
+**Step 22:** Stop.
