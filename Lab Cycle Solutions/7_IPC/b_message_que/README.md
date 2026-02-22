@@ -4,7 +4,8 @@
 
 **Step 2:** Define a helper function to reverse a given text string by swapping characters from the beginning and the end until the middle is reached.
 
-**Step 3:** In the main execution, initialize the configuration attributes for the message queues, specifying the maximum number of messages and the maximum size for each message. 
+**Step 3:** In the main execution, initialize the configuration attributes for the message queues, specifying the maximum number of messages and the maximum size for each message.      
+        
 **Step 4:** Create and open two separate message queues with read and write permissions to allow two-way communication.
 
 **Step 5:** Create a new child process by duplicating the current parent process.
