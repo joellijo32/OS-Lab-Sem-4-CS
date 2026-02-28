@@ -4,7 +4,7 @@ over readers.
 
 #  ALGORITHM     
        
-**Step 1:** Start the program.
+**Step 1:** Start      
 
 **Step 2:** Declare global synchronization objects (semaphores) to manage access to the shared resource, queue read/write attempts, and provide mutual exclusion for the reader counter.
 
