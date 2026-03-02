@@ -9,30 +9,31 @@ parent thread will output the values once the workers have exited.
 
 # ALGORITHM
 
-**Step 1:** Start.
 
-**Step 2:** Check if the argument count is sufficient (greater than 1). If not, print an error and go to Step 11 (Stop).
+**Step 1:** Start the program.
 
-**Step 3:** Convert the command-line string arguments into an integer array and store them.
+**Step 2:** Declare global variables to store the final computed values for the mean, median, and standard deviation.
 
-**Step 4:** Initialize the `Thread` structure containing the integer array and its size.
+**Step 3:** Define a custom data structure that will hold a collection of numbers and the total count of those numbers, which will be passed to each parallel task.
 
-**Step 5:** Create and launch **Thread 1** to calculate the **Mean**.
+**Step 4:** Check if the user has provided numbers as command-line inputs. If not, display an error message and terminate the execution.
 
-* *Thread 1 Logic:* Iterate through the array to sum all elements, divide by the count, and store the result in the global `mean` variable.
+**Step 5:** Convert the provided text inputs into a collection of integers and print the entered numbers to the screen.
 
-**Step 6:** Create and launch **Thread 2** to calculate the **Median**.
+**Step 6:** Package the collection of integers and its size into the previously defined data structure.
 
-* *Thread 2 Logic:* Create a local copy of the array, sort it, find the middle value (handling even/odd sizes), store the result in the global `median` variable, and free the local memory.
+**Step 7:** Define a designated routine to calculate the mean. Inside this routine, iterate through the numbers, sum them up, divide the total sum by the count of numbers, and store the final value in the global mean variable.
 
-**Step 7:** Create and launch **Thread 3** to calculate the **Standard Deviation**.
+**Step 8:** Create the first independent execution thread to run the mean calculation routine, passing the data structure to it.  Pause the main program and wait for this specific thread to completely finish its execution.
 
-* *Thread 3 Logic:* Calculate the mean locally, sum the squared differences between each element and the mean, calculate the square root of the average variance, and store it in the global `std_dev` variable.
+**Step 9:** Define a designated routine to calculate the median. Inside this routine, create a temporary copy of the numerical collection, sort the numbers in ascending order, find the middle value (or the average of the two middle values if the count is even), save the result in the global median variable, and release the temporary copy's memory.
 
-**Step 8:** Wait ( `pthread_join` ) for **Thread 1**, **Thread 2**, and **Thread 3** to finish their execution.
+**Step 10:** Create the second independent execution thread to run the median calculation routine, passing the data structure to it. Pause the main program and wait for this specific thread to completely finish its execution.
 
-**Step 9:** Print the final calculated values for Mean, Median, and Standard Deviation.
+**Step 11:** Define a designated routine to calculate the standard deviation. Inside this routine, compute the average of the numbers, calculate the sum of the squared differences from this average, find the square root of that sum divided by the count, and store the result in the global standard deviation variable.      
 
-**Step 10:** Free any remaining resources (if applicable).
+**Step 12:** Create the third independent execution thread to run the standard deviation calculation routine, passing the data structure to it. Pause the main program and wait for this specific thread to completely finish its execution.
 
-**Step 11:** Stop.
+**Step 13:** Print the final calculated values for the mean, median, and standard deviation to the console.
+
+**Step 14:** Stop.
