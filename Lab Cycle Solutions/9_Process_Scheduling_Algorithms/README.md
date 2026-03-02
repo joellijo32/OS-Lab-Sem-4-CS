@@ -6,7 +6,7 @@ implies a higher priority), and RR (quantum = 3 units) scheduling algorithms on 
 
 # ALGORITHM
 
-**Step 1:** Start the overall simulation program.     
+**Step 1:** Start    
 
 **Step 2:** Prompt the user to enter the total number of processes to be simulated and store this value.
 
@@ -49,5 +49,6 @@ implies a higher priority), and RR (quantum = 3 units) scheduling algorithms on 
 **Step 21:** Compare the newly calculated average waiting times from all four scheduling algorithms (FCFS, Priority, Round Robin, and SRTF) to find the minimum value.
 
 **Step 22:** Print the final comparison results and explicitly state the name of the scheduling algorithm that performed the best by yielding the lowest average waiting time.
+
 
 **Step 23:** Stop.
