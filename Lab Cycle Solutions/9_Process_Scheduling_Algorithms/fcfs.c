@@ -54,7 +54,7 @@ void run_fcfs(Process p[], int n, double *avg_wait, double *avg_tat) {
     *avg_wait = (double)wait_sum/n;
     *avg_tat = (double)tat_sum/n;
 
-    // Print Gantt Chart
+    
     printf("\nGantt Chart:\n");
     for(int i = 0; i < gpos; i++){
         printf("| %d ", gantt[i]);

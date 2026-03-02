@@ -12,6 +12,10 @@ void run_priority(Process p[], int n, double *avg_wait, double *avg_tat) {
     int completed=0,time=0;
     int wait_sum=0,tat_sum=0;
 
+    int gantt[1000];
+    int gpos = 0;
+    int prev = -1;
+
     printf("\n\n===== Non-Preemptive Priority =====\n");
     printf("ID\tAT\tBT\tPR\tCT\tWT\tTAT\n");
 
@@ -34,6 +38,12 @@ void run_priority(Process p[], int n, double *avg_wait, double *avg_tat) {
             continue;
         }
 
+        // Gantt tracking
+        if(prev != temp[idx].id){
+            gantt[gpos++] = temp[idx].id;
+            prev = temp[idx].id;
+        }
+
         temp[idx].completion = time + temp[idx].burst;
         temp[idx].turnaround = temp[idx].completion - temp[idx].arrival;
         temp[idx].waiting = temp[idx].turnaround - temp[idx].burst;
@@ -54,7 +64,13 @@ void run_priority(Process p[], int n, double *avg_wait, double *avg_tat) {
     *avg_wait = (double)wait_sum/n;
     *avg_tat = (double)tat_sum/n;
 
-    printf("Average Waiting Time: %.2lf\n", *avg_wait);
+
+    printf("\nGantt Chart:\n");
+    for(int i = 0; i < gpos; i++){
+        printf("| %d ", gantt[i]);
+    }
+    printf("|\n");
+
+    printf("\nAverage Waiting Time: %.2lf\n", *avg_wait);
     printf("Average Turn Around Time: %.2lf\n", *avg_tat);
 }
-
