@@ -10,7 +10,7 @@ parent thread will output the values once the workers have exited.
 # ALGORITHM
 
 
-**Step 1:** Start the program.
+**Step 1:** Start
 
 **Step 2:** Declare global variables to store the final computed values for the mean, median, and standard deviation.
 
