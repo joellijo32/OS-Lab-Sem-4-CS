@@ -6,44 +6,48 @@ implies a higher priority), and RR (quantum = 3 units) scheduling algorithms on 
 
 # ALGORITHM
 
-**Step 1:** Start.
+**Step 1:** Start the overall simulation program.     
 
-**Step 2:** Declare the `Proc` structure containing process details (ID, Arrival, Burst, Priority, Remaining Time) and input the total number of processes ($n$).
+**Step 2:** Prompt the user to enter the total number of processes to be simulated and store this value.
 
-**Step 3:** Iterate $n$ times to read the Process ID, Arrival Time, Burst Time, and Priority. Initialize `remaining` time equal to `burst` for all processes.
+**Step 3:** Iterate through the total number of processes to accept and store the details for each individual process, specifically its ID, Arrival Time, Burst Time, and Priority.
 
-**Step 4:** Perform **FCFS Scheduling**:
-* **Logic:** Create a copy of the process list and **sort** it by Arrival Time.
-* **Execution:** Iterate through the sorted list. If the CPU is idle (`current_time` < `arrival`), advance time. Otherwise, add `burst` to `current_time` to find `completion`.
-* **Calculation:** Compute `turnaround` (`completion` - `arrival`) and `waiting` (`turnaround` - `burst`) for each process.
-* **Output:** Print the FCFS Gantt Chart and average Waiting/Turnaround times.
+**Step 4:** Begin the First-Come, First-Served (FCFS) scheduling evaluation by passing the process list.
 
-**Step 5:** Perform **Non-Preemptive Priority Scheduling**:
-* **Initialization:** Reset `current_time` and `completed` counters. Mark all processes as incomplete.
-* **Loop:** Repeat until all processes are finished:
-    * **Search:** Iterate to find the process that has **Arrived** and is **Incomplete** with the **Highest Priority**.
-    * **Execute:** Update `current_time` by adding the selected process's `burst`. Calculate `turnaround` and `waiting` times. Mark the process as complete.
-* **Output:** Print the Priority Gantt Chart and average Waiting/Turnaround times.
+**Step 5:** Inside the FCFS evaluation, sort a copy of the processes in ascending order based strictly on their arrival times.
 
-**Step 6:** Perform **Round Robin Scheduling** (Time Quantum = 3):
-* **Initialization:** Reset `current_time` and `remaining` time (to `burst`). Sort the list by Arrival Time.
-* **Loop:** Cycle through the process list repeatedly until all are finished:
-    * **Quantum Check:** If a process has arrived and is incomplete:
-        * If `remaining` > 3: Execute for 3 units, subtract 3 from `remaining`, and advance `current_time`.
-        * If `remaining` $\le$ 3: Execute for `remaining` time, set `remaining` to 0, update `current_time`, and calculate `turnaround` and `waiting` times.
-* **Output:** Print the Round Robin Gantt Chart and average Waiting/Turnaround times.
+**Step 6:** For each process in the sorted FCFS list, calculate its completion time, turnaround time, and waiting time sequentially, while recording the sequence of process IDs to build a Gantt chart.
 
-**Step 7:** Perform **SRTF (Shortest Remaining Time First) Scheduling**:
-* **Initialization:** Reset `current_time` and set `remaining` time equal to `burst` for all processes.
-* **Loop:** Increment time unit by unit until all processes are completed:
-    * **Selection:** Check all processes that have **Arrived** (`arrival` $\le$ `current_time`) and are incomplete. Select the process with the **Minimum Remaining Time**.
-    * **Execute:** Execute the selected process for 1 unit of time: decrement its `remaining` time and increment `current_time`.
-    * **Completion:** If `remaining` becomes 0, mark the process as completed. Calculate `turnaround` (`completion` - `arrival`) and `waiting` (`turnaround` - `burst`).
-* **Output:** Print the SRTF Gantt Chart and average Waiting/Turnaround times.
+**Step 7:** Print the FCFS scheduling table, display the generated Gantt chart, and calculate the overall average waiting and turnaround times.      
 
-**Step 8:** Compare Algorithms:
-* **Comparison:** Compare the **Average Waiting Time** calculated from FCFS, Priority, Round Robin, and SRTF.
-* **Selection:** Identify the algorithm with the minimum average waiting time.
-* **Output:** Print the name of the **Best Algorithm** and its average waiting time.
+**Step 8:** Begin the Non-Preemptive Priority scheduling evaluation using the original process list.
 
-**Step 9:** Stop.
+**Step 9:** Inside the Priority evaluation, iteratively scan the processes to find the one that has already arrived, is not yet completed, and has the highest priority value (largest integer).
+
+**Step 10:** Process the selected highest-priority task to completion by calculating its completion, turnaround, and waiting times, recording its ID for the Gantt chart, updating the system time, and marking it as complete.
+
+**Step 11:** Print the Priority scheduling table, display its generated Gantt chart, and calculate the overall average waiting and turnaround times.
+
+**Step 12:** Begin the Round Robin scheduling evaluation using the original process list and a predefined time quantum of 3 units.
+
+**Step 13:** Inside the Round Robin evaluation, continuously loop through the available processes, allocating CPU time up to the maximum limit of the time quantum, and reducing their remaining burst times accordingly.
+
+**Step 14:** When a process completes its execution in Round Robin, calculate its final completion, turnaround, and waiting times, track its execution segments for the Gantt chart, and increment the count of completed processes.
+
+**Step 15:** Print the Round Robin scheduling table, display its generated Gantt chart, and calculate the overall average waiting and turnaround times.
+
+**Step 16:** Begin the Shortest Remaining Time First (SRTF) scheduling evaluation using the original process list.
+
+**Step 17:** Inside the SRTF evaluation, check every single time unit to find the arrived process with the absolute minimum remaining burst time. 
+
+**Step 18:** If multiple processes have the exact same minimum remaining time in SRTF, resolve the tie by selecting the one with the earliest arrival time, and if ties still exist, pick the one with the smaller process ID.
+
+**Step 19:** Execute the selected SRTF process for one time unit, reduce its remaining time, track its ID for the Gantt chart, and if it finishes, calculate its scheduling metrics. Repeat this unit-by-unit simulation until all processes finish.
+
+**Step 20:** Print the SRTF scheduling table, display its generated Gantt chart, and calculate the overall average waiting and turnaround times.
+
+**Step 21:** Compare the newly calculated average waiting times from all four scheduling algorithms (FCFS, Priority, Round Robin, and SRTF) to find the minimum value.
+
+**Step 22:** Print the final comparison results and explicitly state the name of the scheduling algorithm that performed the best by yielding the lowest average waiting time.
+
+**Step 23:** Stop.
