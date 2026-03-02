@@ -88,7 +88,7 @@ void run_srtf(Process p[], int n, double *avg_wait, double *avg_tat){
 
     
 
-    // Print Gantt Chart
+    
     printf("\nGantt Chart:\n");
     for(int i = 0; i < gpos; i++){
         printf("| %d ", gantt[i]);
