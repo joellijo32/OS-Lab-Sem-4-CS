@@ -12,6 +12,10 @@ void run_rr(Process p[], int n, int tq, double *avg_wait, double *avg_tat){
     int time=0, completed=0;
     int wait_sum=0,tat_sum=0;
 
+    int gantt[1000];
+    int gpos = 0;
+    int prev = -1;
+
     printf("\n\n===== Round Robin (TQ=%d) =====\n",tq);
     printf("ID\tAT\tBT\tCT\tWT\tTAT\n");
 
@@ -22,6 +26,12 @@ void run_rr(Process p[], int n, int tq, double *avg_wait, double *avg_tat){
             if(temp[i].arrival<=time && temp[i].remaining>0){
 
                 executed=1;
+
+                // Gantt tracking
+                if(prev != temp[i].id){
+                    gantt[gpos++] = temp[i].id;
+                    prev = temp[i].id;
+                }
 
                 if(temp[i].remaining>tq){
                     time+=tq;
@@ -53,7 +63,13 @@ void run_rr(Process p[], int n, int tq, double *avg_wait, double *avg_tat){
     *avg_wait=(double)wait_sum/n;
     *avg_tat=(double)tat_sum/n;
 
-    printf("Average Waiting Time: %.2lf\n",*avg_wait);
+    
+    printf("\nGantt Chart:\n");
+    for(int i = 0; i < gpos; i++){
+        printf("| %d ", gantt[i]);
+    }
+    printf("|\n");
+
+    printf("\nAverage Waiting Time: %.2lf\n",*avg_wait);
     printf("Average Turn Around Time: %.2lf\n",*avg_tat);
 }
-
