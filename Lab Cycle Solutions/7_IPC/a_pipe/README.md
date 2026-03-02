@@ -18,8 +18,6 @@ the final output should be “hELLO s4 sTUDENTS”
 
 # ALGORITHM 1
 
-# Algorithm for Interprocess Communication using Pipes
-
 **Step 1:** Start
 
 **Step 2:** Prompt the user to input three separate numerical values representing 'a', 'b', and 'c', and store these values.
