@@ -55,5 +55,6 @@ void run_priority(Process p[], int n, double *avg_wait, double *avg_tat) {
     *avg_tat = (double)tat_sum/n;
 
     printf("Average Waiting Time: %.2lf\n", *avg_wait);
+    printf("Average Turn Around Time: %.2lf\n", *avg_tat);
 }
 

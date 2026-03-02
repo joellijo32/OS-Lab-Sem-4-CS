@@ -54,5 +54,6 @@ void run_rr(Process p[], int n, int tq, double *avg_wait, double *avg_tat){
     *avg_tat=(double)tat_sum/n;
 
     printf("Average Waiting Time: %.2lf\n",*avg_wait);
+    printf("Average Turn Around Time: %.2lf\n",*avg_tat);
 }
 

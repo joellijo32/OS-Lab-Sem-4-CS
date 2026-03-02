@@ -20,12 +20,22 @@ void run_fcfs(Process p[], int n, double *avg_wait, double *avg_tat) {
     int time = 0;
     int wait_sum=0, tat_sum=0;
 
+    int gantt[1000];
+    int gpos = 0;
+    int prev = -1;
+
     printf("\n\n===== FCFS =====\n");
     printf("ID\tAT\tBT\tCT\tWT\tTAT\n");
 
     for(int i=0;i<n;i++){
         if(time < temp[i].arrival)
             time = temp[i].arrival;
+
+        // Gantt tracking
+        if(prev != temp[i].id){
+            gantt[gpos++] = temp[i].id;
+            prev = temp[i].id;
+        }
 
         temp[i].completion = time + temp[i].burst;
         temp[i].turnaround = temp[i].completion - temp[i].arrival;
@@ -44,6 +54,13 @@ void run_fcfs(Process p[], int n, double *avg_wait, double *avg_tat) {
     *avg_wait = (double)wait_sum/n;
     *avg_tat = (double)tat_sum/n;
 
-    printf("Average Waiting Time: %.2lf\n", *avg_wait);
-}
+    // Print Gantt Chart
+    printf("\nGantt Chart:\n");
+    for(int i = 0; i < gpos; i++){
+        printf("| %d ", gantt[i]);
+    }
+    printf("|\n");
 
+    printf("\nAverage Waiting Time: %.2lf\n", *avg_wait);
+    printf("Average Turn Around Time: %.2lf\n", *avg_tat);
+}
