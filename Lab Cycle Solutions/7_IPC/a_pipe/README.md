@@ -24,7 +24,8 @@ the final output should be “hELLO s4 sTUDENTS”
 
 **Step 2:** Prompt the user to input three separate numerical values representing 'a', 'b', and 'c', and store these values.
 
-**Step 3:** Create a unidirectional communication channel (a pipe) to allow data to be passed between processes. 
+**Step 3:** Create a unidirectional communication channel (a pipe) to allow data to be passed between processes.        
+
 **Step 4:** Verify if the communication channel was created successfully. If it failed, display an error message and terminate the program.
 
 **Step 5:** Create a new child process by duplicating the current parent process.
