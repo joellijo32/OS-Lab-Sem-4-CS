@@ -8,7 +8,7 @@ command line arguments.
 
 # ALGORITHM
 
-**Step 1:** Start the program.
+**Step 1:** Start
 
 **Step 2:** Check if exactly two command-line arguments are provided (the length of the reference string and the number of frames). If not, print usage instructions and terminate the program.
 
