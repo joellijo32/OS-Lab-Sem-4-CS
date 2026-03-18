@@ -46,7 +46,6 @@ void put_fork(int i) {
 }
 
 void *philosopher(void *num) {
-
     int i = *(int *)num;
     // Replace while with for loop for better output
     while (1) {
@@ -58,9 +57,7 @@ void *philosopher(void *num) {
         sleep(2);
         put_fork(i);
     }
-
     printf("Philosopher %d FINISHED EATING\n", i);
-
     return NULL;
 }
 
