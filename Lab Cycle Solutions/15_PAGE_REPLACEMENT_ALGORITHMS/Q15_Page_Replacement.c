@@ -93,40 +93,61 @@ int lru(int pages[], int n, int frameCount, int matrix[][MAX_PAGES]) {
     return faults;
 }
 
-int optimal(int pages[], int n, int frameCount, int matrix[][MAX_PAGES]) {
+int optimal(int pages[], int n, int frameCount, int matrix[][MAX_PAGES])
+{
     int frames[MAX_FRAMES];
     int faults = 0;
+
     for (int i = 0; i < frameCount; i++)
         frames[i] = -1;
+
     for (int i = 0; i < frameCount; i++)
         for (int j = 0; j < n; j++)
             matrix[i][j] = -1;
-    for (int i = 0; i < n; i++) {
-        if (search(frames, frameCount, pages[i]) == -1) {
+
+    for (int i = 0; i < n; i++)
+    {
+        if (search(frames, frameCount, pages[i]) == -1)
+        {
             int replaceIndex = -1;
-            int farthest = i;
-            for (int j = 0; j < frameCount; j++) {
-                int k;
-                for (k = i + 1; k < n; k++) {
-                    if (frames[j] == pages[k])
-                        break;
-                }
-                if (k == n) {
+            int farthest = -1;
+
+            for (int j = 0; j < frameCount; j++)
+            {
+                if (frames[j] == -1)
+                {
                     replaceIndex = j;
                     break;
                 }
-                if (k > farthest){
+
+                int k;
+                for (k = i + 1; k < n; k++)
+                {
+                    if (frames[j] == pages[k])
+                        break;
+                }
+
+                if (k == n)
+                {
+                    replaceIndex = j;
+                    farthest = k;
+                }
+                else if (k > farthest)
+                {
                     farthest = k;
                     replaceIndex = j;
                 }
             }
             if (replaceIndex == -1)
                 replaceIndex = 0;
+
             frames[replaceIndex] = pages[i];
             faults++;
         }
+
         populateMatrixColumn(matrix, frames, frameCount, i);
     }
+
     return faults;
 }
 
